@@ -5,18 +5,18 @@ import { Button } from '@/components/ui/button';
 const FormProduct = () => {
 interface FormData {
     imageUrl: string;
-    nama: string;
+    name: string;
     status: string;
-    harga: string;
-    totalPenjualan: number;
+    price: string;
+    stock: number;
 }
 
 const [formData, setFormData] = useState<FormData>({
     imageUrl: '',
-    nama: '',
+    name: '',
     status: 'active',
-    harga: '',
-    totalPenjualan: 0
+    price: '',
+    stock: 0
 });
 
 const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -26,14 +26,14 @@ const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectEle
 
   const handleSubmit = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
-    await addProductToDb(formData);
+    await addProductToDb({ ...formData, price: parseFloat(formData.price) });
     // Optionally, reset the form or show a success message
     setFormData({
         imageUrl: '',
-        nama: '',
+        name: '',
         status: 'active',
-        harga: '',
-        totalPenjualan: 0
+        price: '',
+        stock: 0
     });
   };
 
@@ -41,7 +41,7 @@ const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectEle
     <form onSubmit={handleSubmit} className="mt-4">
       <div>
         <label>Nama:</label>
-        <input type="text" name="nama" value={formData.nama} onChange={handleInputChange} required />
+        <input type="text" name="name" value={formData.name} onChange={handleInputChange} required />
       </div>
       <div>
         <label>Status:</label>
@@ -52,11 +52,11 @@ const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectEle
       </div>
       <div>
         <label>Harga:</label>
-        <input type="text" name="harga" value={formData.harga} onChange={handleInputChange} required />
+        <input type="number" name="price" value={formData.price} onChange={handleInputChange} required />
       </div>
       <div>
         <label>Total Penjualan:</label>
-        <input type="text" name="totalPenjualan" value={formData.totalPenjualan} onChange={handleInputChange} required />
+        <input type="number" name="stock" value={formData.stock} onChange={handleInputChange} required />
       </div>
       <Button type="submit">Create Product</Button>
     </form>
