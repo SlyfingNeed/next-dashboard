@@ -44,9 +44,9 @@ export function ProductsTable({
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Products</CardTitle>
+        <CardTitle>Produk</CardTitle>
         <CardDescription>
-          Manage your products and view their sales performance.
+          Atur ketersediaan barang dan track pembuatannya
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -54,17 +54,17 @@ export function ProductsTable({
           <TableHeader>
             <TableRow>
               <TableHead className="hidden w-[100px] sm:table-cell">
-                <span className="sr-only">Image</span>
+                <span className="sr-only">Gambar</span>
               </TableHead>
-              <TableHead>Name</TableHead>
+              <TableHead>Nama</TableHead>
               <TableHead>Status</TableHead>
-              <TableHead className="hidden md:table-cell">Price</TableHead>
+              <TableHead className="hidden md:table-cell">Harga</TableHead>
               <TableHead className="hidden md:table-cell">
-                Total Sales
+                Total Penjualan
               </TableHead>
-              <TableHead className="hidden md:table-cell">Created at</TableHead>
+              <TableHead className="hidden md:table-cell">Diperbarui pada</TableHead>
               <TableHead>
-                <span className="sr-only">Actions</span>
+                <span className="sr-only">Aksi</span>
               </TableHead>
             </TableRow>
           </TableHeader>
@@ -78,11 +78,11 @@ export function ProductsTable({
       <CardFooter>
         <form className="flex items-center w-full justify-between">
           <div className="text-xs text-muted-foreground">
-            Showing{' '}
+            Menunjukkan{' '}
             <strong>
               {Math.max(0, Math.min(offset - productsPerPage, totalProducts) + 1)}-{offset}
             </strong>{' '}
-            of <strong>{totalProducts}</strong> products
+            dari <strong>{totalProducts}</strong> produk
           </div>
           <div className="flex">
             <Button

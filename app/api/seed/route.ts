@@ -3,10 +3,13 @@ import { db, products } from 'lib/db';
 export const dynamic = 'force-dynamic';
 
 export async function GET() {
+  await seedData();
   return Response.json({
-    message: 'Uncomment to seed data after DB is set up.'
+    message: 'Data seeded successfully!'
   });
+}
 
+async function seedData() {
   await db.insert(products).values([
     {
       id: 1,

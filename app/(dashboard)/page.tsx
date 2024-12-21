@@ -1,3 +1,4 @@
+// import { useState } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { File, PlusCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -16,6 +17,45 @@ export default async function ProductsPage(
     search,
     Number(offset)
   );
+
+  // const [showForm, setShowForm] = useState(false);
+  // const [formData, setFormData] = useState<{
+  //   image: File | null;
+  //   name: string;
+  //   price: string;
+  //   stock: string;
+  // }>({
+  //   name: '',
+  //   price: '',
+  //   stock: '',
+  //   image: null
+  // });
+
+  // const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   const { name, value } = e.target;
+  //   setFormData({ ...formData, [name]: value });
+  // };
+
+  // interface FormData {
+  //   image: File | null;
+  //   name: string;
+  //   price: string;
+  //   stock: string;
+  //   imageUrl: string;
+  // }
+
+  interface SearchParams {
+    q: string;
+    offset: string;
+  }
+
+  // const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
+  //   const defaultImageUrl = 'https://example.com/default-image.jpg';
+  //   await addProductToDb({ ...formData, imageUrl: defaultImageUrl });
+  //   setShowForm(false);
+  //   // Optionally, refresh the product list or revalidate the path
+  // };
 
   return (
     <Tabs defaultValue="all">
@@ -43,6 +83,23 @@ export default async function ProductsPage(
           </Button>
         </div>
       </div>
+      {/* {showForm && (
+        <form onSubmit={handleSubmit} className="mt-4">
+          <div>
+            <label>Name:</label>
+            <input type="text" name="name" value={formData.name} onChange={handleInputChange} required />
+          </div>
+          <div>
+            <label>Price:</label>
+            <input type="text" name="price" value={formData.price} onChange={handleInputChange} required />
+          </div>
+          <div>
+            <label>Stock:</label>
+            <input type="text" name="stock" value={formData.stock} onChange={handleInputChange} required />
+          </div>
+          <Button type="submit">Create Product</Button>
+        </form>
+      )} */}
       <TabsContent value="all">
         <ProductsTable
           products={products}
@@ -53,3 +110,36 @@ export default async function ProductsPage(
     </Tabs>
   );
 }
+// function uploadImage(image: File | null) {
+//   if (!image) {
+//     throw new Error('No image provided.');
+//   }
+//   // Implement the logic to upload the image and return the URL
+//   return 'https://www.freepik.com/free-photo/luxury-3d-product-backdrop-rose-gold-with-orange-background_15670150.htm#fromView=search&page=1&position=16&uuid=8b8724a2-e996-4852-8b18-840007b0dbc7&new_detail=true'; // Replace with actual image URL
+// }
+// async function addProductToDb(product: { imageUrl: string; image: File | null; name: string; price: string; stock: string; }) {
+//   // Using the default image URL directly
+//   const imageUrl = product.imageUrl;
+
+//   // Assuming you have a database function to add the product
+//   const response = await fetch('/api/products', {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//     body: JSON.stringify({
+//       name: product.name,
+//       price: product.price,
+//       stock: product.stock,
+//       imageUrl: imageUrl,
+//     }),
+//   });
+
+//   if (!response.ok) {
+//     throw new Error('Failed to add product to the database');
+//   }
+
+//   return await response.json();
+// }
+
+
